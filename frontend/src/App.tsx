@@ -3,8 +3,10 @@ import { CreateTaskForm } from "./components/CreateTaskForm";
 import { KanbanBoard } from "./components/KanbanBoard";
 import { createTask, deleteTask, fetchTasks, updateTask } from "./api";
 import type { Task, TaskStatus } from "./api";
+import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
+  const { theme, toggleTheme } = useTheme();
   const [tasks, setTasks] = useState<Task[]>([]);
 
   async function load() {
@@ -37,14 +39,23 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-4">
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-            Task Manager
-          </h1>
-          <p className="text-sm text-slate-500">
-            A simple kanban board for managing tasks.
-          </p>
+      <header className="border-b border-slate-200 bg-white dark:border-neutral-800 dark:bg-[#1a1a1a]">
+        <div className="mx-auto max-w-6xl px-6 py-4 flex items-start justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-[#e5e5e5]">
+              Task Manager
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-neutral-400">
+              A simple kanban board for managing tasks.
+            </p>
+          </div>
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle dark mode"
+            className="mt-1 rounded-md px-3 py-1.5 text-sm font-medium border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700"
+          >
+            {theme === "dark" ? "Light mode" : "Dark mode"}
+          </button>
         </div>
       </header>
 

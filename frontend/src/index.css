@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light theme tokens (default) */
+:root {
+  --color-bg: theme("colors.slate.100");
+  --color-surface: theme("colors.white");
+  --color-border: theme("colors.slate.200");
+  --color-text-primary: theme("colors.slate.900");
+  --color-text-secondary: theme("colors.slate.500");
+}
+
+/* Dark theme tokens */
+.dark {
+  --color-bg: #0f0f0f;
+  --color-surface: #1a1a1a;
+  --color-border: theme("colors.neutral.800");
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: theme("colors.neutral.400");
+}
+
 body {
-  @apply bg-slate-100 text-slate-800;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
 }
