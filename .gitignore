@@ -1,4 +1,28 @@
-# Python
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+*.tsbuildinfo
+
+# Bun
+.bun/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local runtime data
+.local/
+
+# Python utilities
 __pycache__/
 *.pyc
 .venv/
@@ -6,13 +30,10 @@ venv/
 .pytest_cache/
 *.db
 
-# Env
+# Environment
 .env
-
-# Node / frontend
-node_modules/
-frontend/dist/
-frontend/node_modules/
+.env*.local
+!.env.example
 
 # Editor / OS
 .DS_Store
