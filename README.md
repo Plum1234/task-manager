@@ -106,3 +106,8 @@ These are **left in on purpose** and map directly to the seeded Linear tickets:
 > *"Deleting a missing task throws a server error"*, returns a 404 instead of a
 > 500, the board stops showing a broken state on double-delete, tests go green,
 > and a PR opens — awaiting human approval.
+
+## Contributors
+
+- Ben Zhou — project author
+- Claude (by Anthropic) — AI intern
