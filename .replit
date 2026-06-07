@@ -1,19 +1,49 @@
-modules = ["nodejs-20", "web"]
-run = "npm run dev"
+modules = ["nodejs-20", "python-3.11", "web"]
+run = "bash run.sh"
+entrypoint = "frontend/src/App.tsx"
+hidden = [".venv", "node_modules", "frontend/node_modules", "__pycache__"]
 
 [nix]
 channel = "stable-24_05"
 
 [env]
-NEXT_TELEMETRY_DISABLED = "1"
+PYTHONUNBUFFERED = "1"
 
-# Local dev server: Replit maps the internal port to the public webview on :80
+# Only the Vite frontend is public (on :80). It proxies /tasks to the FastAPI
+# backend running internally on :8000, so the backend needs no public port.
 [[ports]]
-localPort = 3000
+localPort = 5173
 externalPort = 80
 
-# Production deployment (Deploy button -> Autoscale)
+# Pre-defined Run workflow so Replit doesn't generate one. Starts the FastAPI
+# backend and the Vite frontend together, waits for the frontend port.
+[workflows]
+runButton = "App"
+
+[[workflows.workflow]]
+name = "App"
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd backend && pip install -r requirements.txt && uvicorn main:app --host 127.0.0.1 --port 8000"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm install && npm run dev"
+waitForPort = 5173
+
+# Keep Replit's package guesser from rewriting dependencies on its own.
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = false
+
+# Production deploy: build the frontend, then run a SINGLE FastAPI process that
+# serves both the API and the built UI (frontend/dist). Fits one-click Autoscale.
 [deployment]
 deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["npm", "run", "start"]
+build = ["bash", "-c", "cd frontend && npm ci && npm run build && cd ../backend && pip install -r requirements.txt"]
+run = ["bash", "-c", "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"]
