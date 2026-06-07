@@ -15,7 +15,7 @@ src/
   components/         # Dashboard, board, form, and task cards
   lib/tasks.ts        # Local task data access and validation
   api.ts              # Browser API client
-data/tasks.json       # Demo data store
+data/seed-tasks.json  # Clean demo seed data
 scripts/seed_linear.py
 ```
 
@@ -50,5 +50,8 @@ bun run build
 
 ## Data
 
-The demo data lives in `data/tasks.json`. Set `TASKS_DATA_FILE` if you want the
-Next API routes to read and write a different JSON file.
+On first run, the API copies `data/seed-tasks.json` into `.local/tasks.json`.
+The `.local/` directory is ignored so demo clicks do not dirty git.
+
+Set `TASKS_DATA_FILE` if you want the Next API routes to read and write a
+different JSON file.
