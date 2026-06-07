@@ -37,12 +37,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-slate-200 bg-white">
+      <header className="border-b border-neutral-800 bg-[#1a1a1a]">
         <div className="mx-auto max-w-6xl px-6 py-4">
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-[#e5e5e5]">
             Task Manager
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-neutral-400">
             A simple kanban board for managing tasks.
           </p>
         </div>
