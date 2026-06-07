@@ -34,7 +34,7 @@ export function TaskCard({ task, onMove, onDelete }: Props) {
           {prev && (
             <button
               onClick={() => onMove(task.id, prev)}
-              className="rounded border border-slate-200 px-2 py-1 text-xs text-slate-600 hover:bg-slate-50"
+              className="rounded border border-red-500 bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
             >
               ←
             </button>
@@ -42,7 +42,7 @@ export function TaskCard({ task, onMove, onDelete }: Props) {
           {next && (
             <button
               onClick={() => onMove(task.id, next)}
-              className="rounded border border-slate-200 px-2 py-1 text-xs text-slate-600 hover:bg-slate-50"
+              className="rounded border border-red-500 bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
             >
               →
             </button>
