@@ -23,13 +23,13 @@ export function KanbanBoard({ tasks, onMove, onDelete }: Props) {
         return (
           <section
             key={col.key}
-            className="rounded-xl border border-slate-200 bg-slate-50 p-3"
+            className="rounded-xl border border-neutral-800 bg-[#1a1a1a] p-3"
           >
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-slate-700">
+              <h3 className="text-sm font-semibold text-neutral-200">
                 {col.label}
               </h3>
-              <span className="rounded-full bg-slate-200 px-2 py-0.5 text-xs text-slate-600">
+              <span className="rounded-full bg-neutral-700 px-2 py-0.5 text-xs text-neutral-300">
                 {items.length}
               </span>
             </div>
@@ -43,7 +43,7 @@ export function KanbanBoard({ tasks, onMove, onDelete }: Props) {
                 />
               ))}
               {items.length === 0 && (
-                <p className="px-1 py-6 text-center text-xs text-slate-400">
+                <p className="px-1 py-6 text-center text-xs text-neutral-500">
                   Nothing here yet
                 </p>
               )}
