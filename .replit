@@ -1,0 +1,19 @@
+modules = ["nodejs-20", "web"]
+run = "npm run dev"
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+NEXT_TELEMETRY_DISABLED = "1"
+
+# Local dev server: Replit maps the internal port to the public webview on :80
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+# Production deployment (Deploy button -> Autoscale)
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
